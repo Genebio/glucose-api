@@ -1,8 +1,7 @@
 """SQLAlchemy database models."""
 from datetime import datetime
 import uuid
-from sqlalchemy import Column, DateTime, Float, ForeignKey, String, Text
-from sqlalchemy.dialects.sqlite import BLOB
+from sqlalchemy import Column, DateTime, Float, String, Text
 
 from app.infrastructure.database.connection import Base
 

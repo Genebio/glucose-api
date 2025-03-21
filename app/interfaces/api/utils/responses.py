@@ -1,5 +1,5 @@
 """API response utilities."""
-from typing import Any, Dict, Generic, List, Optional, TypeVar
+from typing import Any, Dict, Generic, Optional, TypeVar
 from fastapi import HTTPException, status
 from pydantic import BaseModel
 

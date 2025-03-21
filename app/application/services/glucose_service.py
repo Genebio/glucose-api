@@ -13,7 +13,6 @@ from app.domain.models.glucose_level import GlucoseLevel
 from app.domain.schemas.glucose_level import (
     GlucoseLevelCreate,
     GlucoseLevelList,
-    GlucoseLevelCSVRow,
 )
 
 

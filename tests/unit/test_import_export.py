@@ -1,10 +1,8 @@
 """Tests for import and export functionality."""
-import io
 import uuid
 from datetime import datetime
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, patch
 
-import pandas as pd
 import pytest
 
 from app.application.services.glucose_service import GlucoseService
