@@ -79,26 +79,21 @@ docker exec glucose-api python scripts/import_data.py
 
 ### Remote Deployment
 
-For deploying to Kubernetes environments (including cloud providers):
+This application is deployed on Render.com. You can access the demo at:
+- API Documentation: https://glucose-api.onrender.com/docs
+- Health Check: https://glucose-api.onrender.com/health
 
-1. Ensure you have kubectl configured to your target cluster
+To deploy your own instance:
 
-2. Run the deployment script:
+1. Push your code to GitHub
 
-```bash
-# For local minikube deployment
-./deploy.sh
+2. Connect your repository to Render:
+   - Go to [Render Dashboard](https://dashboard.render.com/)
+   - Click "New" and select "Blueprint" 
+   - Connect your GitHub repository
+   - Render will detect the configuration automatically
 
-# For remote registry deployment (e.g., Docker Hub)
-REGISTRY=your-dockerhub-username ./deploy.sh
-```
-
-The deployment script:
-- Builds the Docker image
-- Pushes it to a registry (if specified)
-- Creates the Kubernetes resources
-- Waits for the deployment to be ready
-- Offers to import sample data
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## API Documentation
 

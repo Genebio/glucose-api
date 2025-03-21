@@ -1,5 +1,12 @@
 # Una Health Backend Challenge Solution
 
+## Deployed Demo
+
+A live demo of this application is available at:
+- API Documentation: https://glucose-api.onrender.com/docs
+- Health Check: https://glucose-api.onrender.com/health
+- Example Endpoint: https://glucose-api.onrender.com/api/v1/levels/?user_id=cccccccc-cccc-cccc-cccc-cccccccccccc
+
 ## Project Structure and Architecture
 
 This solution implements a glucose levels API using FastAPI, SQLAlchemy, and SQLite. The project follows Onion Architecture principles:
@@ -48,8 +55,8 @@ This solution implements a glucose levels API using FastAPI, SQLAlchemy, and SQL
    - Fixtures for database testing
 
 5. **Deployment Options**
-   - Docker containerization
-   - Kubernetes deployment via Minikube
+   - Docker containerization for local development
+   - Cloud deployment via Render.com (currently live)
 
 ## Technical Decisions
 
