@@ -43,8 +43,8 @@ This project follows Onion Architecture principles:
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/Genebio/glucose-api.git
+cd glucose-api
 ```
 
 2. Install dependencies:
