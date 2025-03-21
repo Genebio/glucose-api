@@ -1,0 +1,17 @@
+{
+  "name": "Glucose API",
+  "description": "API for managing glucose levels",
+  "repository": "https://github.com/yourusername/glucose-api",
+  "keywords": ["python", "fastapi", "glucose"],
+  "env": {
+    "DATABASE_URL": {
+      "description": "Database connection URL",
+      "value": "sqlite:///glucose.db"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}

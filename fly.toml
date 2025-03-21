@@ -1,0 +1,50 @@
+# fly.toml app configuration file generated for glucose-api-polished-log-7062 on 2025-03-21T15:42:41+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'glucose-api-polished-log-7062'
+primary_region = 'iad'
+
+[build]
+  builder = 'paketobuildpacks/builder:base'
+
+[env]
+  DATABASE_URL = 'sqlite:///data/glucose.db'
+  PORT = '8080'
+
+# Added processes to specify command and keep resource usage down
+[processes]
+  app = "uvicorn app.main:app --host 0.0.0.0 --port 8080"
+
+[[mounts]]
+  source = 'glucose_data'
+  destination = '/app/data'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  processes = ["app"]
+  auto_stop_machines = true  # Stop machines when not in use
+  auto_start_machines = true # Start machines when traffic arrives
+  min_machines_running = 0   # Minimum running machines
+
+  [http_service.concurrency]
+    type = 'connections'
+    hard_limit = 25
+    soft_limit = 20
+
+[checks]
+  [checks.health]
+    port = 8080
+    type = 'http'
+    interval = '15s'
+    timeout = '10s'
+    grace_period = '30s'
+    method = 'get'
+    path = '/health'
+    protocol = 'http'
+
+# Use the smallest VM size available (nano-1x)
+[[vm]]
+  size = 'shared-cpu-1x'

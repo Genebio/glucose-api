@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: glucose-api-service
+spec:
+  selector:
+    app: glucose-api
+  ports:
+  - port: 8000
+    targetPort: 8000
+  type: NodePort

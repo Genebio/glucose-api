@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: glucose-api
+  labels:
+    app: glucose-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: glucose-api
+  template:
+    metadata:
+      labels:
+        app: glucose-api
+    spec:
+      containers:
+      - name: glucose-api
+        image: glucose-api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: "sqlite:////data/glucose.db"
+        volumeMounts:
+        - name: glucose-data
+          mountPath: /data
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 20
+      volumes:
+      - name: glucose-data
+        persistentVolumeClaim:
+          claimName: glucose-data-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: glucose-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: glucose-api-service
+spec:
+  selector:
+    app: glucose-api
+  ports:
+  - port: 80
+    targetPort: 8000
+  type: LoadBalancer
